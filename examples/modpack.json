@@ -1,0 +1,33 @@
+{
+  "name": "MonServeurRP",
+  "version": "1.4.2",
+  "gameVersion": "FS25",
+  "serverAddress": "example.com",
+  "serverPort": 10823,
+  "statusUrl": "https://example.com/status.json",
+  "baseDownloadUrl": "https://github.com/CHANGEME/CHANGEME/releases/download/modpack-v1.4.2",
+  "changelog": [
+    {
+      "version": "1.4.2",
+      "added": ["Nouveau tracteur", "Nouvelle production"],
+      "fixed": ["Correction de la map"],
+      "removed": ["Ancien camion"]
+    }
+  ],
+  "mods": [
+    {
+      "file": "FS25_RP_Core.zip",
+      "version": "1.4.2",
+      "sha256": "REMPLACER_PAR_LE_VRAI_HASH_SHA256",
+      "size": 10485760,
+      "required": true
+    },
+    {
+      "file": "FS25_RP_Map.zip",
+      "version": "1.4.2",
+      "sha256": "REMPLACER_PAR_LE_VRAI_HASH_SHA256",
+      "size": 52428800,
+      "required": true
+    }
+  ]
+}

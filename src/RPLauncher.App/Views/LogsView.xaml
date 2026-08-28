@@ -1,0 +1,17 @@
+<UserControl x:Class="RPLauncher.App.Views.LogsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DockPanel>
+        <Grid DockPanel.Dock="Top" Margin="0,0,0,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Logs" Style="{StaticResource TitleText}"/>
+            <Button Grid.Column="1" Content="Ouvrir le dossier des logs" Style="{StaticResource SecondaryButton}" Click="OpenFolder_Click"/>
+        </Grid>
+        <ScrollViewer>
+            <ItemsControl x:Name="LogItems"/>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>

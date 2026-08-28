@@ -1,0 +1,11 @@
+{
+  "manifestUrl": "https://raw.githubusercontent.com/CHANGEME/CHANGEME/main/modpack.json",
+  "gameInstallPath": null,
+  "gamePlatform": 0,
+  "defaultProfilePath": null,
+  "rpProfilePath": null,
+  "rpModsPath": null,
+  "installedModpackVersion": "0.0.0",
+  "keepPreviousVersionDays": 5,
+  "firstRunCompleted": false
+}
