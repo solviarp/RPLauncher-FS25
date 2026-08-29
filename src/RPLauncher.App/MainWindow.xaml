@@ -1,7 +1,7 @@
 <Window x:Class="RPLauncher.App.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="RP Launcher" Height="720" Width="1180"
+        Title="Solvia Launcher" Height="720" Width="1180"
         WindowStartupLocation="CenterScreen"
         Background="{StaticResource BgDarkest}">
     <Grid>
