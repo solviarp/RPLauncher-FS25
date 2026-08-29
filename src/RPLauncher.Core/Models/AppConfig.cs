@@ -12,7 +12,7 @@ public enum GamePlatform
 public class AppConfig
 {
     [JsonPropertyName("manifestUrl")]
-    public string ManifestUrl { get; set; } = "https://raw.githubusercontent.com/CHANGEME/CHANGEME/main/modpack.json";
+    public string ManifestUrl { get; set; } = "https://raw.githubusercontent.com/solviarp/RPLauncher-FS25/main/modpack.json";
 
     [JsonPropertyName("gameInstallPath")]
     public string? GameInstallPath { get; set; }

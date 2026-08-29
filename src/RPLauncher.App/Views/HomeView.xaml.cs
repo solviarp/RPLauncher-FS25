@@ -107,12 +107,14 @@ public partial class HomeView : UserControl
                 await SyncModsAsync(_services.LastManifest);
             }
 
+            ActionButton.Content = "Lancement...";
             LaunchGame();
         }
         finally
         {
             _busy = false;
             ActionButton.IsEnabled = true;
+            ActionButton.Content = _updateAvailable ? "METTRE À JOUR" : "JOUER";
         }
     }
 

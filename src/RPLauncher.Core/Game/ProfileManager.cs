@@ -18,7 +18,7 @@ public static class ProfileManager
         return Path.Combine(GetDefaultDocumentsGamesFolder(), "FarmingSimulator2025");
     }
 
-    public static (string ProfilePath, string ModsPath) CreateOrRepairRpProfile(string? customBasePath = null)
+    public static (string ProfilePath, string ModsPath) CreateOrRepairRpProfile(string? customBasePath = null, string? sourceProfilePath = null)
     {
         var basePath = customBasePath ?? GetDefaultDocumentsGamesFolder();
         var profilePath = Path.Combine(basePath, DefaultRpProfileFolderName);
@@ -27,27 +27,57 @@ public static class ProfileManager
         Directory.CreateDirectory(profilePath);
         Directory.CreateDirectory(modsPath);
 
-        WriteGameSettings(profilePath, modsPath);
+        var source = sourceProfilePath ?? GetDefaultProfilePath();
+        CopyRootFilesFromExistingProfile(source, profilePath);
+
+        WriteGameSettings(profilePath, modsPath, source);
 
         Logger.Info($"Profil RP prêt : {profilePath}");
         return (profilePath, modsPath);
     }
 
-    private static void WriteGameSettings(string profilePath, string modsPath)
+    private static void CopyRootFilesFromExistingProfile(string sourceProfilePath, string destinationProfilePath)
+    {
+        if (!Directory.Exists(sourceProfilePath)) return;
+
+        try
+        {
+            foreach (var filePath in Directory.GetFiles(sourceProfilePath))
+            {
+                var fileName = Path.GetFileName(filePath);
+
+                if (string.Equals(fileName, "gameSettings.xml", StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                var destinationPath = Path.Combine(destinationProfilePath, fileName);
+                if (!File.Exists(destinationPath))
+                {
+                    File.Copy(filePath, destinationPath);
+                    Logger.Info($"Fichier de profil copié depuis le profil normal : {fileName}");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Warning($"Impossible de copier certains fichiers du profil normal : {ex.Message}");
+        }
+    }
+
+    private static void WriteGameSettings(string profilePath, string modsPath, string sourceProfilePath)
     {
         var settingsPath = Path.Combine(profilePath, "gameSettings.xml");
+        var sourceSettingsPath = Path.Combine(sourceProfilePath, "gameSettings.xml");
 
         XDocument doc;
         if (File.Exists(settingsPath))
         {
-            try
-            {
-                doc = XDocument.Load(settingsPath);
-            }
-            catch
-            {
-                doc = CreateMinimalGameSettings();
-            }
+            doc = TryLoad(settingsPath) ?? CreateMinimalGameSettings();
+        }
+        else if (File.Exists(sourceSettingsPath))
+        {
+            doc = TryLoad(sourceSettingsPath) ?? CreateMinimalGameSettings();
         }
         else
         {
@@ -66,6 +96,18 @@ public static class ProfileManager
         overrideElement.SetAttributeValue("directory", modsPath);
 
         doc.Save(settingsPath);
+    }
+
+    private static XDocument? TryLoad(string path)
+    {
+        try
+        {
+            return XDocument.Load(path);
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     private static XDocument CreateMinimalGameSettings()
