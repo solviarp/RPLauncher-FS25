@@ -4,7 +4,7 @@
   #define MyAppVersion "1.0.0"
 #endif
 #define MyAppPublisher "Arionyq"
-#define MyAppExeName "SolviaLauncher.exe"
+#define MyAppExeName "RPLauncher.exe"
 
 [Setup]
 AppId={{8B2E6E2E-9B7A-4F3E-9C0B-RPLAUNCHERFS25}
