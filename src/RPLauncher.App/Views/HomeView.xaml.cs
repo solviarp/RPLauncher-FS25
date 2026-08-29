@@ -109,6 +109,7 @@ public partial class HomeView : UserControl
 
             ActionButton.Content = "Lancement...";
             LaunchGame();
+            await Task.Delay(3000);
         }
         finally
         {
