@@ -1,0 +1,21 @@
+﻿{
+    "name":  "SolviaRP",
+    "version":  "1.0.0",
+    "gameVersion":  "FS25",
+    "serverAddress":  "82.67.85.215",
+    "serverPort":  10823,
+    "statusUrl":  "",
+    "baseDownloadUrl":  "https://github.com/solviarp/RPLauncher-FS25/releases/download/modpack-v1.0.0",
+    "changelog":  [
+
+                  ],
+    "mods":  [
+                 {
+                     "file":  "FS25_Geistal.zip",
+                     "version":  "1.0.0",
+                     "sha256":  "2f557b65bdcec7a817459458bfb1e7021d90f09d4ebf0e6cd19557f99d46d0ed",
+                     "size":  1429698619,
+                     "required":  true
+                 }
+             ]
+}
